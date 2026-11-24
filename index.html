@@ -1,1471 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#142b45">
-  <title>LIFE SORT – Making Life Easier</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #243449;
-      line-height: 1.6;
-    }
-    header {
-      background: #142b45;
-      color: white;
-      padding: 22px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-    .tagline { color: #c8d7e8; font-size: 13px; }
-    .hero {
-      text-align: center;
-      padding: 75px 20px 65px;
-      background: linear-gradient(135deg, #e8f0f8, #ffffff);
-    }
-    .hero h1 {
-      font-size: clamp(34px, 6vw, 54px);
-      line-height: 1.15;
-      margin: 0 auto 18px;
-      max-width: 750px;
-      color: #142b45;
-    }
-    .hero p {
-      font-size: 18px;
-      color: #53657a;
-      max-width: 620px;
-      margin: 0 auto 28px;
-    }
-    .button {
-      display: inline-block;
-      background: #e99a35;
-      color: #142b45;
-      padding: 14px 27px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      border: 0;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .section {
-      max-width: 1050px;
-      margin: auto;
-      padding: 55px 20px;
-    }
-    .section h2 {
-      text-align: center;
-      color: #142b45;
-      font-size: 30px;
-      margin: 0 0 12px;
-    }
-    .intro {
-      text-align: center;
-      color: #64748b;
-      margin: 0 auto 30px;
-      max-width: 650px;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px;
-    }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(20,43,69,.06);
-    }
-    .card .emoji { font-size: 30px; }
-    .card h3 { color: #142b45; margin: 10px 0 5px; }
-    .card p { color: #64748b; margin: 0; }
-    .help {
-      background: white;
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 5px 20px rgba(20,43,69,.06);
-      max-width: 760px;
-      margin: auto;
-    }
-    textarea {
-      width: 100%;
-      min-height: 130px;
-      padding: 15px;
-      border: 1px solid #ccd5df;
-      border-radius: 10px;
-      font: inherit;
-      resize: vertical;
-      margin: 12px 0;
-    }
-    .note { font-size: 13px; color: #718096; }
-    #response {
-      margin-top: 18px;
-      padding: 15px;
-      background: #edf4fb;
-      border-radius: 10px;
-      display: none;
-    }
-    footer {
-      text-align: center;
-      background: #142b45;
-      color: #d7e2ed;
-      padding: 25px 15px;
-      font-size: 14px;
-    }
-    @media (max-width: 600px) {
-      header { justify-content: center; text-align: center; }
-      .hero { padding-top: 55px; }
-      .help { padding: 20px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIFE SORT - Making Life Easier</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #243449;
+  background: #f5f7fa;
+  line-height: 1.6;
+}
+header {
+  background: #142b45;
+  color: white;
+  padding: 24px;
+  text-align: center;
+}
+.logo { font-size: 28px; font-weight: bold; letter-spacing: 3px; }
+.hero {
+  text-align: center;
+  padding: 75px 20px;
+  background: #e8f0f8;
+}
+h1 { color: #142b45; font-size: 42px; line-height: 1.2; }
+.hero p { font-size: 18px; max-width: 600px; margin: 20px auto; }
+.button {
+  display: inline-block;
+  background: #e99a35;
+  color: #142b45;
+  padding: 13px 25px;
+  border: 0;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+section { padding: 45px 20px; }
+h2 { text-align: center; color: #142b45; font-size: 30px; }
+.intro { text-align: center; color: #64748b; }
+.cards {
+  max-width: 1000px;
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+}
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px #142b4510;
+}
+.card h3 { color: #142b45; }
+.card p { color: #64748b; }
+.help {
+  background: white;
+  max-width: 700px;
+  margin: 25px auto;
+  padding: 25px;
+  border-radius: 14px;
+}
+textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px solid #ccd5df;
+  border-radius: 8px;
+  font: inherit;
+}
+#response {
+  display: none;
+  background: #e8f0f8;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 8px;
+}
+footer {
+  background: #142b45;
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
+@media(max-width:600px) {
+  h1 { font-size: 34px; }
+}
+</style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">LIFE SORT</div>
-    <div class="tagline">Making everyday life easier</div>
-  </header>
+<header>
+  <div class="logo">LIFE SORT</div>
+  <div>Making everyday life easier</div>
+</header>
 
-  <main>
-    <section class="hero">
-      <h1>Life can be complicated.<br>Let's sort it together.</h1>
-      <p>Understand letters, bills, everyday problems and life's questions — in simple language, without the stress.</p>
-      <a class="button" href="#get-help">Get started</a>
-    </section>
+<main>
+  <div class="hero">
+    <h1>Life can be complicated.<br>Let's sort it together.</h1>
+    <p>Understand letters, bills, everyday problems and life's questions in simple language, without the stress.</p>
+    <a class="button" href="#help">Get started</a>
+  </div>
 
-    <section class="section">
-      <h2>What can LIFE SORT help with?</h2>
-      <p class="intro">Whatever is confusing you, we're here to help make things clearer.</p>
-
-      <div class="cards">
-        <div class="card">
-          <div class="emoji">✉️</div>
-          <h3>Letters</h3>
-          <p>Understand official letters and what they are asking you to do.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">💷</div>
-          <h3>Bills & money</h3>
-          <p>Make sense of bills, payments and everyday money questions.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">💡</div>
-          <h3>Everyday problems</h3>
-          <p>Break confusing situations into simple, manageable steps.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">❓</div>
-          <h3>Any question</h3>
-          <p>Ask questions and get clear explanations without complicated words.</p>
-        </div>
+  <section>
+    <h2>What can LIFE SORT help with?</h2>
+    <p class="intro">Whatever is confusing you, we're here to help.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>✉️ Letters</h3>
+        <p>Understand official letters and what they mean.</p>
       </div>
-    </section>
-
-    <section class="section" id="get-help">
-      <h2>What would you like help with?</h2>
-      <p class="intro">Tell us what's on your mind. Start with a question below.</p>
-
-      <div class="help">
-        <label for="question"><strong>Your question</strong></label>
-        <textarea id="question" placeholder="For example: Who do I pay my gas bill to each month?"></textarea>
-        <button class="button" onclick="sendQuestion()">Get help</button>
-        <div id="response">
-          <strong>You're in the right place.</strong>
-          <p>This is a preview of LIFE SORT. The full question-answering service will be connected as we develop the product.</p>
-        </div>
-        <p class="note">Please don't enter passwords, bank details or other private information.</p>
+      <div class="card">
+        <h3>💷 Bills and money</h3>
+        <p>Make sense of bills, payments and money questions.</p>
       </div>
-    </section>
-  </main>
-
-  <footer>
-    <strong>LIFE SORT</strong><br>
-    Friendly help. Clear answers. Everyday life made easier.
-  </footer>
-
-  <script>
-    function sendQuestion() {
-      const question = document.getElementById("question").value.trim();
-      const response = document.getElementById("response");
-      if (!question) {
-        alert("Please type your question first.");
-        return;
-      }
-      response.style.display = "block";
-    }
-  </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#142b45">
-  <title>LIFE SORT – Making Life Easier</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #243449;
-      line-height: 1.6;
-    }
-    header {
-      background: #142b45;
-      color: white;
-      padding: 22px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-    .tagline { color: #c8d7e8; font-size: 13px; }
-    .hero {
-      text-align: center;
-      padding: 75px 20px 65px;
-      background: linear-gradient(135deg, #e8f0f8, #ffffff);
-    }
-    .hero h1 {
-      font-size: clamp(34px, 6vw, 54px);
-      line-height: 1.15;
-      margin: 0 auto 18px;
-      max-width: 750px;
-      color: #142b45;
-    }
-    .hero p {
-      font-size: 18px;
-      color: #53657a;
-      max-width: 620px;
-      margin: 0 auto 28px;
-    }
-    .button {
-      display: inline-block;
-      background: #e99a35;
-      color: #142b45;
-      padding: 14px 27px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      border: 0;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .section {
-      max-width: 1050px;
-      margin: auto;
-      padding: 55px 20px;
-    }
-    .section h2 {
-      text-align: center;
-      color: #142b45;
-      font-size: 30px;
-      margin: 0 0 12px;
-    }
-    .intro {
-      text-align: center;
-      color: #64748b;
-      margin: 0 auto 30px;
-      max-width: 650px;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px;
-    }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(20,43,69,.06);
-    }
-    .card .emoji { font-size: 30px; }
-    .card h3 { color: #142b45; margin: 10px 0 5px; }
-    .card p { color: #64748b; margin: 0; }
-    .help {
-      background: white;
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 5px 20px rgba(20,43,69,.06);
-      max-width: 760px;
-      margin: auto;
-    }
-    textarea {
-      width: 100%;
-      min-height: 130px;
-      padding: 15px;
-      border: 1px solid #ccd5df;
-      border-radius: 10px;
-      font: inherit;
-      resize: vertical;
-      margin: 12px 0;
-    }
-    .note { font-size: 13px; color: #718096; }
-    #response {
-      margin-top: 18px;
-      padding: 15px;
-      background: #edf4fb;
-      border-radius: 10px;
-      display: none;
-    }
-    footer {
-      text-align: center;
-      background: #142b45;
-      color: #d7e2ed;
-      padding: 25px 15px;
-      font-size: 14px;
-    }
-    @media (max-width: 600px) {
-      header { justify-content: center; text-align: center; }
-      .hero { padding-top: 55px; }
-      .help { padding: 20px; }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="logo">LIFE SORT</div>
-    <div class="tagline">Making everyday life easier</div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <h1>Life can be complicated.<br>Let's sort it together.</h1>
-      <p>Understand letters, bills, everyday problems and life's questions — in simple language, without the stress.</p>
-      <a class="button" href="#get-help">Get started</a>
-    </section>
-
-    <section class="section">
-      <h2>What can LIFE SORT help with?</h2>
-      <p class="intro">Whatever is confusing you, we're here to help make things clearer.</p>
-
-      <div class="cards">
-        <div class="card">
-          <div class="emoji">✉️</div>
-          <h3>Letters</h3>
-          <p>Understand official letters and what they are asking you to do.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">💷</div>
-          <h3>Bills & money</h3>
-          <p>Make sense of bills, payments and everyday money questions.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">💡</div>
-          <h3>Everyday problems</h3>
-          <p>Break confusing situations into simple, manageable steps.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">❓</div>
-          <h3>Any question</h3>
-          <p>Ask questions and get clear explanations without complicated words.</p>
-        </div>
+      <div class="card">
+        <h3>💡 Everyday problems</h3>
+        <p>Break confusing situations into simple steps.</p>
       </div>
-    </section>
-
-    <section class="section" id="get-help">
-      <h2>What would you like help with?</h2>
-      <p class="intro">Tell us what's on your mind. Start with a question below.</p>
-
-      <div class="help">
-        <label for="question"><strong>Your question</strong></label>
-        <textarea id="question" placeholder="For example: Who do I pay my gas bill to each month?"></textarea>
-        <button class="button" onclick="sendQuestion()">Get help</button>
-        <div id="response">
-          <strong>You're in the right place.</strong>
-          <p>This is a preview of LIFE SORT. The full question-answering service will be connected as we develop the product.</p>
-        </div>
-        <p class="note">Please don't enter passwords, bank details or other private information.</p>
+      <div class="card">
+        <h3>❓ Any question</h3>
+        <p>Ask questions and get clear explanations.</p>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer>
-    <strong>LIFE SORT</strong><br>
-    Friendly help. Clear answers. Everyday life made easier.
-  </footer>
-
-  <script>
-    function sendQuestion() {
-      const question = document.getElementById("question").value.trim();
-      const response = document.getElementById("response");
-      if (!question) {
-        alert("Please type your question first.");
-        return;
-      }
-      response.style.display = "block";
-    }
-  </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#142b45">
-  <title>LIFE SORT – Making Life Easier</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #243449;
-      line-height: 1.6;
-    }
-    header {
-      background: #142b45;
-      color: white;
-      padding: 22px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-    .tagline { color: #c8d7e8; font-size: 13px; }
-    .hero {
-      text-align: center;
-      padding: 75px 20px 65px;
-      background: linear-gradient(135deg, #e8f0f8, #ffffff);
-    }
-    .hero h1 {
-      font-size: clamp(34px, 6vw, 54px);
-      line-height: 1.15;
-      margin: 0 auto 18px;
-      max-width: 750px;
-      color: #142b45;
-    }
-    .hero p {
-      font-size: 18px;
-      color: #53657a;
-      max-width: 620px;
-      margin: 0 auto 28px;
-    }
-    .button {
-      display: inline-block;
-      background: #e99a35;
-      color: #142b45;
-      padding: 14px 27px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      border: 0;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .section {
-      max-width: 1050px;
-      margin: auto;
-      padding: 55px 20px;
-    }
-    .section h2 {
-      text-align: center;
-      color: #142b45;
-      font-size: 30px;
-      margin: 0 0 12px;
-    }
-    .intro {
-      text-align: center;
-      color: #64748b;
-      margin: 0 auto 30px;
-      max-width: 650px;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px;
-    }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(20,43,69,.06);
-    }
-    .card .emoji { font-size: 30px; }
-    .card h3 { color: #142b45; margin: 10px 0 5px; }
-    .card p { color: #64748b; margin: 0; }
-    .help {
-      background: white;
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 5px 20px rgba(20,43,69,.06);
-      max-width: 760px;
-      margin: auto;
-    }
-    textarea {
-      width: 100%;
-      min-height: 130px;
-      padding: 15px;
-      border: 1px solid #ccd5df;
-      border-radius: 10px;
-      font: inherit;
-      resize: vertical;
-      margin: 12px 0;
-    }
-    .note { font-size: 13px; color: #718096; }
-    #response {
-      margin-top: 18px;
-      padding: 15px;
-      background: #edf4fb;
-      border-radius: 10px;
-      display: none;
-    }
-    footer {
-      text-align: center;
-      background: #142b45;
-      color: #d7e2ed;
-      padding: 25px 15px;
-      font-size: 14px;
-    }
-    @media (max-width: 600px) {
-      header { justify-content: center; text-align: center; }
-      .hero { padding-top: 55px; }
-      .help { padding: 20px; }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="logo">LIFE SORT</div>
-    <div class="tagline">Making everyday life easier</div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <h1>Life can be complicated.<br>Let's sort it together.</h1>
-      <p>Understand letters, bills, everyday problems and life's questions — in simple language, without the stress.</p>
-      <a class="button" href="#get-help">Get started</a>
-    </section>
-
-    <section class="section">
-      <h2>What can LIFE SORT help with?</h2>
-      <p class="intro">Whatever is confusing you, we're here to help make things clearer.</p>
-
-      <div class="cards">
-        <div class="card">
-          <div class="emoji">✉️</div>
-          <h3>Letters</h3>
-          <p>Understand official letters and what they are asking you to do.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">💷</div>
-          <h3>Bills & money</h3>
-          <p>Make sense of bills, payments and everyday money questions.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">💡</div>
-          <h3>Everyday problems</h3>
-          <p>Break confusing situations into simple, manageable steps.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">❓</div>
-          <h3>Any question</h3>
-          <p>Ask questions and get clear explanations without complicated words.</p>
-        </div>
+  <section id="help">
+    <h2>What would you like help with?</h2>
+    <p class="intro">Tell us what's on your mind.</p>
+    <div class="help">
+      <label for="question"><strong>Your question</strong></label>
+      <textarea id="question" placeholder="Type your question here..."></textarea>
+      <button class="button" onclick="showAnswer()">Get help</button>
+      <div id="response">
+        <strong>You're in the right place!</strong>
+        <p>This is a preview. The full LIFE SORT answer service will be connected as we develop the product.</p>
       </div>
-    </section>
+      <p><small>Please don't enter passwords or bank details.</small></p>
+    </div>
+  </section>
+</main>
 
-    <section class="section" id="get-help">
-      <h2>What would you like help with?</h2>
-      <p class="intro">Tell us what's on your mind. Start with a question below.</p>
+<footer>
+  <strong>LIFE SORT</strong><br>
+  Friendly help. Clear answers. Everyday life made easier.
+</footer>
 
-      <div class="help">
-        <label for="question"><strong>Your question</strong></label>
-        <textarea id="question" placeholder="For example: Who do I pay my gas bill to each month?"></textarea>
-        <button class="button" onclick="sendQuestion()">Get help</button>
-        <div id="response">
-          <strong>You're in the right place.</strong>
-          <p>This is a preview of LIFE SORT. The full question-answering service will be connected as we develop the product.</p>
-        </div>
-        <p class="note">Please don't enter passwords, bank details or other private information.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <strong>LIFE SORT</strong><br>
-    Friendly help. Clear answers. Everyday life made easier.
-  </footer>
-
-  <script>
-    function sendQuestion() {
-      const question = document.getElementById("question").value.trim();
-      const response = document.getElementById("response");
-      if (!question) {
-        alert("Please type your question first.");
-        return;
-      }
-      response.style.display = "block";
-    }
-  </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#142b45">
-  <title>LIFE SORT – Making Life Easier</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #243449;
-      line-height: 1.6;
-    }
-    header {
-      background: #142b45;
-      color: white;
-      padding: 22px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-    .tagline { color: #c8d7e8; font-size: 13px; }
-    .hero {
-      text-align: center;
-      padding: 75px 20px 65px;
-      background: linear-gradient(135deg, #e8f0f8, #ffffff);
-    }
-    .hero h1 {
-      font-size: clamp(34px, 6vw, 54px);
-      line-height: 1.15;
-      margin: 0 auto 18px;
-      max-width: 750px;
-      color: #142b45;
-    }
-    .hero p {
-      font-size: 18px;
-      color: #53657a;
-      max-width: 620px;
-      margin: 0 auto 28px;
-    }
-    .button {
-      display: inline-block;
-      background: #e99a35;
-      color: #142b45;
-      padding: 14px 27px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      border: 0;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .section {
-      max-width: 1050px;
-      margin: auto;
-      padding: 55px 20px;
-    }
-    .section h2 {
-      text-align: center;
-      color: #142b45;
-      font-size: 30px;
-      margin: 0 0 12px;
-    }
-    .intro {
-      text-align: center;
-      color: #64748b;
-      margin: 0 auto 30px;
-      max-width: 650px;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px;
-    }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(20,43,69,.06);
-    }
-    .card .emoji { font-size: 30px; }
-    .card h3 { color: #142b45; margin: 10px 0 5px; }
-    .card p { color: #64748b; margin: 0; }
-    .help {
-      background: white;
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 5px 20px rgba(20,43,69,.06);
-      max-width: 760px;
-      margin: auto;
-    }
-    textarea {
-      width: 100%;
-      min-height: 130px;
-      padding: 15px;
-      border: 1px solid #ccd5df;
-      border-radius: 10px;
-      font: inherit;
-      resize: vertical;
-      margin: 12px 0;
-    }
-    .note { font-size: 13px; color: #718096; }
-    #response {
-      margin-top: 18px;
-      padding: 15px;
-      background: #edf4fb;
-      border-radius: 10px;
-      display: none;
-    }
-    footer {
-      text-align: center;
-      background: #142b45;
-      color: #d7e2ed;
-      padding: 25px 15px;
-      font-size: 14px;
-    }
-    @media (max-width: 600px) {
-      header { justify-content: center; text-align: center; }
-      .hero { padding-top: 55px; }
-      .help { padding: 20px; }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="logo">LIFE SORT</div>
-    <div class="tagline">Making everyday life easier</div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <h1>Life can be complicated.<br>Let's sort it together.</h1>
-      <p>Understand letters, bills, everyday problems and life's questions — in simple language, without the stress.</p>
-      <a class="button" href="#get-help">Get started</a>
-    </section>
-
-    <section class="section">
-      <h2>What can LIFE SORT help with?</h2>
-      <p class="intro">Whatever is confusing you, we're here to help make things clearer.</p>
-
-      <div class="cards">
-        <div class="card">
-          <div class="emoji">✉️</div>
-          <h3>Letters</h3>
-          <p>Understand official letters and what they are asking you to do.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">💷</div>
-          <h3>Bills & money</h3>
-          <p>Make sense of bills, payments and everyday money questions.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">💡</div>
-          <h3>Everyday problems</h3>
-          <p>Break confusing situations into simple, manageable steps.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">❓</div>
-          <h3>Any question</h3>
-          <p>Ask questions and get clear explanations without complicated words.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="get-help">
-      <h2>What would you like help with?</h2>
-      <p class="intro">Tell us what's on your mind. Start with a question below.</p>
-
-      <div class="help">
-        <label for="question"><strong>Your question</strong></label>
-        <textarea id="question" placeholder="For example: Who do I pay my gas bill to each month?"></textarea>
-        <button class="button" onclick="sendQuestion()">Get help</button>
-        <div id="response">
-          <strong>You're in the right place.</strong>
-          <p>This is a preview of LIFE SORT. The full question-answering service will be connected as we develop the product.</p>
-        </div>
-        <p class="note">Please don't enter passwords, bank details or other private information.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <strong>LIFE SORT</strong><br>
-    Friendly help. Clear answers. Everyday life made easier.
-  </footer>
-
-  <script>
-    function sendQuestion() {
-      const question = document.getElementById("question").value.trim();
-      const response = document.getElementById("response");
-      if (!question) {
-        alert("Please type your question first.");
-        return;
-      }
-      response.style.display = "block";
-    }
-  </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#142b45">
-  <title>LIFE SORT – Making Life Easier</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #243449;
-      line-height: 1.6;
-    }
-    header {
-      background: #142b45;
-      color: white;
-      padding: 22px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-    .tagline { color: #c8d7e8; font-size: 13px; }
-    .hero {
-      text-align: center;
-      padding: 75px 20px 65px;
-      background: linear-gradient(135deg, #e8f0f8, #ffffff);
-    }
-    .hero h1 {
-      font-size: clamp(34px, 6vw, 54px);
-      line-height: 1.15;
-      margin: 0 auto 18px;
-      max-width: 750px;
-      color: #142b45;
-    }
-    .hero p {
-      font-size: 18px;
-      color: #53657a;
-      max-width: 620px;
-      margin: 0 auto 28px;
-    }
-    .button {
-      display: inline-block;
-      background: #e99a35;
-      color: #142b45;
-      padding: 14px 27px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      border: 0;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .section {
-      max-width: 1050px;
-      margin: auto;
-      padding: 55px 20px;
-    }
-    .section h2 {
-      text-align: center;
-      color: #142b45;
-      font-size: 30px;
-      margin: 0 0 12px;
-    }
-    .intro {
-      text-align: center;
-      color: #64748b;
-      margin: 0 auto 30px;
-      max-width: 650px;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px;
-    }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(20,43,69,.06);
-    }
-    .card .emoji { font-size: 30px; }
-    .card h3 { color: #142b45; margin: 10px 0 5px; }
-    .card p { color: #64748b; margin: 0; }
-    .help {
-      background: white;
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 5px 20px rgba(20,43,69,.06);
-      max-width: 760px;
-      margin: auto;
-    }
-    textarea {
-      width: 100%;
-      min-height: 130px;
-      padding: 15px;
-      border: 1px solid #ccd5df;
-      border-radius: 10px;
-      font: inherit;
-      resize: vertical;
-      margin: 12px 0;
-    }
-    .note { font-size: 13px; color: #718096; }
-    #response {
-      margin-top: 18px;
-      padding: 15px;
-      background: #edf4fb;
-      border-radius: 10px;
-      display: none;
-    }
-    footer {
-      text-align: center;
-      background: #142b45;
-      color: #d7e2ed;
-      padding: 25px 15px;
-      font-size: 14px;
-    }
-    @media (max-width: 600px) {
-      header { justify-content: center; text-align: center; }
-      .hero { padding-top: 55px; }
-      .help { padding: 20px; }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="logo">LIFE SORT</div>
-    <div class="tagline">Making everyday life easier</div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <h1>Life can be complicated.<br>Let's sort it together.</h1>
-      <p>Understand letters, bills, everyday problems and life's questions — in simple language, without the stress.</p>
-      <a class="button" href="#get-help">Get started</a>
-    </section>
-
-    <section class="section">
-      <h2>What can LIFE SORT help with?</h2>
-      <p class="intro">Whatever is confusing you, we're here to help make things clearer.</p>
-
-      <div class="cards">
-        <div class="card">
-          <div class="emoji">✉️</div>
-          <h3>Letters</h3>
-          <p>Understand official letters and what they are asking you to do.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">💷</div>
-          <h3>Bills & money</h3>
-          <p>Make sense of bills, payments and everyday money questions.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">💡</div>
-          <h3>Everyday problems</h3>
-          <p>Break confusing situations into simple, manageable steps.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">❓</div>
-          <h3>Any question</h3>
-          <p>Ask questions and get clear explanations without complicated words.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="get-help">
-      <h2>What would you like help with?</h2>
-      <p class="intro">Tell us what's on your mind. Start with a question below.</p>
-
-      <div class="help">
-        <label for="question"><strong>Your question</strong></label>
-        <textarea id="question" placeholder="For example: Who do I pay my gas bill to each month?"></textarea>
-        <button class="button" onclick="sendQuestion()">Get help</button>
-        <div id="response">
-          <strong>You're in the right place.</strong>
-          <p>This is a preview of LIFE SORT. The full question-answering service will be connected as we develop the product.</p>
-        </div>
-        <p class="note">Please don't enter passwords, bank details or other private information.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <strong>LIFE SORT</strong><br>
-    Friendly help. Clear answers. Everyday life made easier.
-  </footer>
-
-  <script>
-    function sendQuestion() {
-      const question = document.getElementById("question").value.trim();
-      const response = document.getElementById("response");
-      if (!question) {
-        alert("Please type your question first.");
-        return;
-      }
-      response.style.display = "block";
-    }
-  </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#142b45">
-  <title>LIFE SORT – Making Life Easier</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #243449;
-      line-height: 1.6;
-    }
-    header {
-      background: #142b45;
-      color: white;
-      padding: 22px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-    .tagline { color: #c8d7e8; font-size: 13px; }
-    .hero {
-      text-align: center;
-      padding: 75px 20px 65px;
-      background: linear-gradient(135deg, #e8f0f8, #ffffff);
-    }
-    .hero h1 {
-      font-size: clamp(34px, 6vw, 54px);
-      line-height: 1.15;
-      margin: 0 auto 18px;
-      max-width: 750px;
-      color: #142b45;
-    }
-    .hero p {
-      font-size: 18px;
-      color: #53657a;
-      max-width: 620px;
-      margin: 0 auto 28px;
-    }
-    .button {
-      display: inline-block;
-      background: #e99a35;
-      color: #142b45;
-      padding: 14px 27px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      border: 0;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .section {
-      max-width: 1050px;
-      margin: auto;
-      padding: 55px 20px;
-    }
-    .section h2 {
-      text-align: center;
-      color: #142b45;
-      font-size: 30px;
-      margin: 0 0 12px;
-    }
-    .intro {
-      text-align: center;
-      color: #64748b;
-      margin: 0 auto 30px;
-      max-width: 650px;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px;
-    }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(20,43,69,.06);
-    }
-    .card .emoji { font-size: 30px; }
-    .card h3 { color: #142b45; margin: 10px 0 5px; }
-    .card p { color: #64748b; margin: 0; }
-    .help {
-      background: white;
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 5px 20px rgba(20,43,69,.06);
-      max-width: 760px;
-      margin: auto;
-    }
-    textarea {
-      width: 100%;
-      min-height: 130px;
-      padding: 15px;
-      border: 1px solid #ccd5df;
-      border-radius: 10px;
-      font: inherit;
-      resize: vertical;
-      margin: 12px 0;
-    }
-    .note { font-size: 13px; color: #718096; }
-    #response {
-      margin-top: 18px;
-      padding: 15px;
-      background: #edf4fb;
-      border-radius: 10px;
-      display: none;
-    }
-    footer {
-      text-align: center;
-      background: #142b45;
-      color: #d7e2ed;
-      padding: 25px 15px;
-      font-size: 14px;
-    }
-    @media (max-width: 600px) {
-      header { justify-content: center; text-align: center; }
-      .hero { padding-top: 55px; }
-      .help { padding: 20px; }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="logo">LIFE SORT</div>
-    <div class="tagline">Making everyday life easier</div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <h1>Life can be complicated.<br>Let's sort it together.</h1>
-      <p>Understand letters, bills, everyday problems and life's questions — in simple language, without the stress.</p>
-      <a class="button" href="#get-help">Get started</a>
-    </section>
-
-    <section class="section">
-      <h2>What can LIFE SORT help with?</h2>
-      <p class="intro">Whatever is confusing you, we're here to help make things clearer.</p>
-
-      <div class="cards">
-        <div class="card">
-          <div class="emoji">✉️</div>
-          <h3>Letters</h3>
-          <p>Understand official letters and what they are asking you to do.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">💷</div>
-          <h3>Bills & money</h3>
-          <p>Make sense of bills, payments and everyday money questions.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">💡</div>
-          <h3>Everyday problems</h3>
-          <p>Break confusing situations into simple, manageable steps.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">❓</div>
-          <h3>Any question</h3>
-          <p>Ask questions and get clear explanations without complicated words.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="get-help">
-      <h2>What would you like help with?</h2>
-      <p class="intro">Tell us what's on your mind. Start with a question below.</p>
-
-      <div class="help">
-        <label for="question"><strong>Your question</strong></label>
-        <textarea id="question" placeholder="For example: Who do I pay my gas bill to each month?"></textarea>
-        <button class="button" onclick="sendQuestion()">Get help</button>
-        <div id="response">
-          <strong>You're in the right place.</strong>
-          <p>This is a preview of LIFE SORT. The full question-answering service will be connected as we develop the product.</p>
-        </div>
-        <p class="note">Please don't enter passwords, bank details or other private information.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <strong>LIFE SORT</strong><br>
-    Friendly help. Clear answers. Everyday life made easier.
-  </footer>
-
-  <script>
-    function sendQuestion() {
-      const question = document.getElementById("question").value.trim();
-      const response = document.getElementById("response");
-      if (!question) {
-        alert("Please type your question first.");
-        return;
-      }
-      response.style.display = "block";
-    }
-  </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#142b45">
-  <title>LIFE SORT – Making Life Easier</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #243449;
-      line-height: 1.6;
-    }
-    header {
-      background: #142b45;
-      color: white;
-      padding: 22px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-    .tagline { color: #c8d7e8; font-size: 13px; }
-    .hero {
-      text-align: center;
-      padding: 75px 20px 65px;
-      background: linear-gradient(135deg, #e8f0f8, #ffffff);
-    }
-    .hero h1 {
-      font-size: clamp(34px, 6vw, 54px);
-      line-height: 1.15;
-      margin: 0 auto 18px;
-      max-width: 750px;
-      color: #142b45;
-    }
-    .hero p {
-      font-size: 18px;
-      color: #53657a;
-      max-width: 620px;
-      margin: 0 auto 28px;
-    }
-    .button {
-      display: inline-block;
-      background: #e99a35;
-      color: #142b45;
-      padding: 14px 27px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      border: 0;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .section {
-      max-width: 1050px;
-      margin: auto;
-      padding: 55px 20px;
-    }
-    .section h2 {
-      text-align: center;
-      color: #142b45;
-      font-size: 30px;
-      margin: 0 0 12px;
-    }
-    .intro {
-      text-align: center;
-      color: #64748b;
-      margin: 0 auto 30px;
-      max-width: 650px;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px;
-    }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(20,43,69,.06);
-    }
-    .card .emoji { font-size: 30px; }
-    .card h3 { color: #142b45; margin: 10px 0 5px; }
-    .card p { color: #64748b; margin: 0; }
-    .help {
-      background: white;
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 5px 20px rgba(20,43,69,.06);
-      max-width: 760px;
-      margin: auto;
-    }
-    textarea {
-      width: 100%;
-      min-height: 130px;
-      padding: 15px;
-      border: 1px solid #ccd5df;
-      border-radius: 10px;
-      font: inherit;
-      resize: vertical;
-      margin: 12px 0;
-    }
-    .note { font-size: 13px; color: #718096; }
-    #response {
-      margin-top: 18px;
-      padding: 15px;
-      background: #edf4fb;
-      border-radius: 10px;
-      display: none;
-    }
-    footer {
-      text-align: center;
-      background: #142b45;
-      color: #d7e2ed;
-      padding: 25px 15px;
-      font-size: 14px;
-    }
-    @media (max-width: 600px) {
-      header { justify-content: center; text-align: center; }
-      .hero { padding-top: 55px; }
-      .help { padding: 20px; }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="logo">LIFE SORT</div>
-    <div class="tagline">Making everyday life easier</div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <h1>Life can be complicated.<br>Let's sort it together.</h1>
-      <p>Understand letters, bills, everyday problems and life's questions — in simple language, without the stress.</p>
-      <a class="button" href="#get-help">Get started</a>
-    </section>
-
-    <section class="section">
-      <h2>What can LIFE SORT help with?</h2>
-      <p class="intro">Whatever is confusing you, we're here to help make things clearer.</p>
-
-      <div class="cards">
-        <div class="card">
-          <div class="emoji">✉️</div>
-          <h3>Letters</h3>
-          <p>Understand official letters and what they are asking you to do.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">💷</div>
-          <h3>Bills & money</h3>
-          <p>Make sense of bills, payments and everyday money questions.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">💡</div>
-          <h3>Everyday problems</h3>
-          <p>Break confusing situations into simple, manageable steps.</p>
-        </div>
-        <div class="card">
-          <div class="emoji">❓</div>
-          <h3>Any question</h3>
-          <p>Ask questions and get clear explanations without complicated words.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="get-help">
-      <h2>What would you like help with?</h2>
-      <p class="intro">Tell us what's on your mind. Start with a question below.</p>
-
-      <div class="help">
-        <label for="question"><strong>Your question</strong></label>
-        <textarea id="question" placeholder="For example: Who do I pay my gas bill to each month?"></textarea>
-        <button class="button" onclick="sendQuestion()">Get help</button>
-        <div id="response">
-          <strong>You're in the right place.</strong>
-          <p>This is a preview of LIFE SORT. The full question-answering service will be connected as we develop the product.</p>
-        </div>
-        <p class="note">Please don't enter passwords, bank details or other private information.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <strong>LIFE SORT</strong><br>
-    Friendly help. Clear answers. Everyday life made easier.
-  </footer>
-
-  <script>
-    function sendQuestion() {
-      const question = document.getElementById("question").value.trim();
-      const response = document.getElementById("response");
-      if (!question) {
-        alert("Please type your question first.");
-        return;
-      }
-      response.style.display = "block";
-    }
-  </script>
+<script>
+function showAnswer() {
+  const question = document.getElementById("question").value.trim();
+  if (!question) {
+    alert("Please type your question first.");
+    return;
+  }
+  document.getElementById("response").style.display = "block";
+}
+</script>
 
 </body>
 </html>
